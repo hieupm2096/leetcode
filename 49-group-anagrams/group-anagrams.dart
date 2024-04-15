@@ -4,14 +4,14 @@ class Solution {
 
     final result = <String, List<String>>{};
 
-    for (var i = 0; i < strs.length; i++) {
-        final s = (strs[i].split('')..sort()).join();
+    for (final str in strs) {
+        final s = (str.split('')..sort()).join();
 
         if (!result.containsKey(s)) {
             result[s] = [];
         }
 
-        result[s]!.add(strs[i]);
+        result[s]!.add(str);
     }
 
     return result.values.toList();
