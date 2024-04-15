@@ -7,11 +7,11 @@ class Solution {
     for (var i = 0; i < strs.length; i++) {
         final s = (strs[i].split('')..sort()).join();
 
-        if (result[s] == null) {
-            result[s] = [strs[i]];
-        } else {
-            result[s]!.add(strs[i]);
+        if (!result.containsKey(s)) {
+            result[s] = [];
         }
+
+        result[s]!.add(strs[i]);
     }
 
     return result.values.toList();
