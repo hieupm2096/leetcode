@@ -5,9 +5,7 @@ class Solution {
     final result = <String, List<String>>{};
 
     for (var i = 0; i < strs.length; i++) {
-        final arr = strs[i].split('');
-        arr.sort();
-        final s = arr.join();
+        final s = (strs[i].split('')..sort()).join();
 
         if (result[s] == null) {
             result[s] = [strs[i]];
