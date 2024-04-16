@@ -8,10 +8,9 @@ class Solution {
         mp[t[i]] = (mp[t[i]] ?? 0) + 1;
     }
 
-    var l = 0, r = 0;
+    var l = 0, r = 0, start = 0;
+    int? end;
     var count = mp.length;
-    
-    var result = '';
 
     while (r < s.length) {
         final c = s[r];
@@ -23,9 +22,10 @@ class Solution {
 
         while (count == 0) {
             // set the result
-            final temp = s.substring(l, r + 1);
-
-            if (result.length == 0 || temp.length < result.length) result = temp;
+            if (end == null || r - l < end! - start) {
+                start = l;
+                end = r;
+            }
 
             final c1 = s[l];
 
@@ -40,6 +40,8 @@ class Solution {
         r++;
     }
 
-    return result;
+    if (end == null) return '';
+
+    return s.substring(start, end! + 1);
   }
 }
