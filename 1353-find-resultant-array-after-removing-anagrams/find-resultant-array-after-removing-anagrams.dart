@@ -16,16 +16,16 @@ class Solution {
   bool isAnagram(String str1, String str2) {
     if (str1.length != str2.length) return false;
 
-    final c1 = <String, int>{};
-    final c2 = <String, int>{};
-    
+    final arr1 = List<int>.filled(26, 0);
+    final arr2 = List<int>.filled(26, 0);
+
     for (var i = 0; i < str1.length; i++) {
-        c1[str1[i]] = (c1[str1[i]] ?? 0) + 1;
-        c2[str2[i]] = (c2[str2[i]] ?? 0) + 1;
+        arr1[str1[i].codeUnitAt(0) - 'a'.codeUnitAt(0)]++;
+        arr2[str2[i].codeUnitAt(0) - 'a'.codeUnitAt(0)]++;
     }
 
-    for (final key in c1.keys) {
-        if (c1[key] != c2[key]) return false;
+    for (var i = 0; i < 26; i++) {
+        if (arr1[i] != arr2[i]) return false;
     }
 
     return true;
