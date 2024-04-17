@@ -4,27 +4,25 @@ class Solution {
 
     var l = 0, r = 0;
     final freq = <String, int>{};
-    var counter = 0;
-    var result = 0;
+    var counter = 0, result = 0;
 
     while (r < s.length) {
         final c = s[r];
+
         freq[c] = (freq[c] ?? 0) + 1;
 
         if (freq[c]! == 1) {
             counter++;
-            if (counter > result) result = counter;
+            if (result < counter) result = counter;
         }
 
         while (freq[c]! > 1) {
-            final c2 = s[l];
+            final c1 = s[l];
 
-            if (freq.containsKey(c2)) {
-                freq[c2] = freq[c2]! - 1;
+            freq[c1] = freq[c1]! - 1;
 
-                if (freq[c2]! == 0) counter--;
-            }
-            
+            if (freq[c1]! == 0) counter--;
+
             l++;
         }
 
