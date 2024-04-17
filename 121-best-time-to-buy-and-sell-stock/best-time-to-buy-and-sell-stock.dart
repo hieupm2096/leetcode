@@ -6,11 +6,13 @@ class Solution {
     var max = 0;
 
     while (r < prices.length) {
-        final profit = prices[r] - prices[l];
-        if (profit > max) max = profit;
-        if (profit < 0) {
+        if (prices[r] < prices[l]) {
             l = r;
+        } else {
+            final profit = prices[r] - prices[l];
+            if (profit > max) max = profit;
         }
+
         r++;
     }
 
