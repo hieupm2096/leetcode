@@ -11,13 +11,13 @@ class Solution {
             arr[str[i].codeUnitAt(0) - 'a'.codeUnitAt(0)]++;
         }
 
-        final s = arr.join('#');
+        final t = arr.join('#');
 
-        if (!result.containsKey(s)) {
-            result[s] = [];
+        if (result.containsKey(t)) {
+            result[t]!.add(str);
+        } else {
+            result[t] = [str];
         }
-
-        result[s]!.add(str);
     }
 
     return result.values.toList();
