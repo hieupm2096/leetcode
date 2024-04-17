@@ -9,16 +9,16 @@ class Solution {
         final arr = List<int>.filled(26, 0);
 
         for (var i = 0; i < s.length; i++) {
-        final c = s[i];
-        arr[c.codeUnitAt(0) - 'a'.codeUnitAt(0)]++;
+            final c = s[i];
+            arr[c.codeUnitAt(0) - 'a'.codeUnitAt(0)]++;
         }
 
         final k = arr.join('#');
 
         if (result.containsKey(k)) {
-        result[k]!.add(s);
-        } else {
-        result[k] = [s];
+            result[k]!.add(s);
+            } else {
+            result[k] = [s];
         }
     }
 
