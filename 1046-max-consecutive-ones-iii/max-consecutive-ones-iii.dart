@@ -9,14 +9,14 @@ class Solution {
 
         if (e == 0) count++;
 
-        if (count > k) {
+        while (count > k) {
             var e1 = nums[l];
             if (e1 == 0) count--;
             l++;
-        } else {
-            if (longest1 < r - l + 1) {
-                longest1 = r - l + 1;
-            }
+        }
+
+        if (longest1 < r - l + 1) {
+            longest1 = r - l + 1;
         }
 
         r++;
