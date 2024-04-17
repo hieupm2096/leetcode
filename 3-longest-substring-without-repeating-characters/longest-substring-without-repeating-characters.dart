@@ -3,8 +3,9 @@ class Solution {
     if (s.length < 2) return s.length;
 
     var l = 0, r = 0;
+    var longest = 0;
+    var counter = 0;
     final freq = <String, int>{};
-    var counter = 0, result = 0;
 
     while (r < s.length) {
         final c = s[r];
@@ -13,7 +14,7 @@ class Solution {
 
         if (freq[c]! == 1) {
             counter++;
-            if (result < counter) result = counter;
+            if (counter > longest) longest = counter;
         }
 
         while (freq[c]! > 1) {
@@ -21,7 +22,9 @@ class Solution {
 
             freq[c1] = freq[c1]! - 1;
 
-            if (freq[c1]! == 0) counter--;
+            if (freq[c1]! == 0) {
+                counter--;
+            }
 
             l++;
         }
@@ -29,6 +32,6 @@ class Solution {
         r++;
     }
 
-    return result;
+    return longest;
   }
 }
