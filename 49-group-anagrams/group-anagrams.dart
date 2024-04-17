@@ -17,7 +17,7 @@ class Solution {
 
         if (result.containsKey(k)) {
             result[k]!.add(s);
-            } else {
+        } else {
             result[k] = [s];
         }
     }
