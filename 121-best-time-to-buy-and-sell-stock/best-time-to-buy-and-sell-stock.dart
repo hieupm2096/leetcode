@@ -3,19 +3,21 @@ class Solution {
     if (prices.length < 2) return 0;
 
     var l = 0, r = 1;
-    var max = 0;
+    var result = 0;
 
     while (r < prices.length) {
-        if (prices[r] < prices[l]) {
-            l = r;
-        } else {
-            final profit = prices[r] - prices[l];
-            if (profit > max) max = profit;
+        final profit = prices[r] - prices[l];
+        if (profit > 0) {
+            if (result < profit) result = profit;
+        }
+
+        while (prices[l] > prices[r]) {
+            l++;
         }
 
         r++;
     }
 
-    return max;
+    return result;
   }
 }
