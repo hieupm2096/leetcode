@@ -2,9 +2,8 @@ class Solution {
   int lengthOfLongestSubstring(String s) {
     if (s.length < 2) return s.length;
 
-    var l = 0, r = 0;
-    var longest = 0;
-    var counter = 0;
+    var l = 0, r = 0, counter = 0, longest = 0;
+
     final freq = <String, int>{};
 
     while (r < s.length) {
@@ -14,17 +13,15 @@ class Solution {
 
         if (freq[c]! == 1) {
             counter++;
-            if (counter > longest) longest = counter;
+            if (counter > longest) {
+                longest = counter;
+            }
         }
 
         while (freq[c]! > 1) {
             final c1 = s[l];
-
             freq[c1] = freq[c1]! - 1;
-
-            if (freq[c1]! == 0) {
-                counter--;
-            }
+            if (freq[c1]! == 0) counter--;
 
             l++;
         }
