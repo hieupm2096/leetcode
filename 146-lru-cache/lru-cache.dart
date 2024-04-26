@@ -11,7 +11,7 @@ class LRUCache {
         if (!_cache.containsKey(key)) return -1;
         final value = _cache[key]!;
 
-        // to make sure the key is at the top of map -> most recently used
+        // to make sure the key is at the last of map -> most recently used
         _cache.remove(key);
         _cache[key] = value;
 
