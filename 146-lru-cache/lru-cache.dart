@@ -1,49 +1,40 @@
-import 'dart:collection';
-
 class LRUCache {
-  late int _capacity;
-  late LinkedList<Entry> _list;
-  late Map<int, Entry> _dict;
+    late Map<int, int> _cache;
+    late int _capacity;
 
-  LRUCache(int capacity) {
-    _capacity = capacity;
-    _list = LinkedList();
-    _dict = {};
-  }
-
-  int get(int key) {
-    final entry = _dict[key];
-
-    if (entry == null) return -1;
-
-    entry.unlink();
-
-    _list.addFirst(entry);
-
-    return entry.value;
-  }
-
-  void put(int key, int value) {
-    if (_dict.containsKey(key)) {
-      final oldEntry = _dict[key]!;
-      oldEntry.unlink();
-    } else if (_dict.length >= _capacity) {
-      final lruEntry = _list.last;
-      lruEntry.unlink();
-
-      _dict.remove(lruEntry.key);
+    LRUCache(int capacity) {
+        _cache = {};
+        _capacity = capacity;
     }
+  
+    int get(int key) {
+        if (!_cache.containsKey(key)) return -1;
+        final value = _cache[key]!;
 
-    final newEntry = Entry(key, value);
-    _list.addFirst(newEntry);
+        // to make sure the key is at the top of map -> most recently used
+        _cache.remove(key);
+        _cache[key] = value;
 
-    _dict[key] = newEntry;
-  }
+        return value;
+    }
+  
+    void put(int key, int value) {
+        if (_cache.containsKey(key)) {
+            _cache.remove(key);
+        } else if (_cache.length >= _capacity) {
+            final lruKey = _cache.keys.first;
+            _cache.remove(lruKey);
+        }
+
+        _cache[key] = value;
+    }
 }
 
-final class Entry extends LinkedListEntry<Entry> {
-  final int key;
-  final int value;
 
-  Entry(this.key, this.value);
-}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = LRUCache(capacity);
+ * int param1 = obj.get(key);
+ * obj.put(key,value);
+ */
