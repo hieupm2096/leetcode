@@ -6,31 +6,20 @@ class Solution {
     final arr = s.split('');
 
     while (l < r) {
-        if (arr[l].isVowel()) {
-            lq[l] = arr[l];
+        while (l < r && !arr[l].isVowel()) {
+            l++;
         }
 
-        if (arr[r].isVowel()) {
-            rq[r] = arr[r];
-        }
-
-        if (lq.isNotEmpty && rq.isNotEmpty) {
-            final lIndex = lq.keys.first;
-            final rIndex = rq.keys.first;
-
-            arr[lIndex] = rq[rIndex]!;
-            arr[rIndex] = lq[lIndex]!;
-
-            lq.remove(lIndex);
-            rq.remove(rIndex);
-
-            l++;
-            r--;
-        } else if (lq.isEmpty) {
-            l++;
-        } else if (rq.isEmpty) {
+        while (l < r && !arr[r].isVowel()) {
             r--;
         }
+
+        final t = arr[l];
+        arr[l] = arr[r];
+        arr[r] = t;
+
+        l++;
+        r--;
     }
 
     return arr.join('');
