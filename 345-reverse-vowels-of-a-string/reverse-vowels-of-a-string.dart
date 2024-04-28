@@ -5,7 +5,7 @@ class Solution {
 
     final arr = s.split('');
 
-    while (l < r && r > 0 && l < s.length) {
+    while (l < r) {
         if (arr[l].isVowel()) {
         lq[l] = arr[l];
         }
