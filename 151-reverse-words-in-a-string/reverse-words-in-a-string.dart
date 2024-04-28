@@ -2,23 +2,25 @@ class Solution {
   String reverseWords(String s) {
     if (s.isEmpty) return '';
 
-    final result = <String>[];
+    return s.split(' ').reversed.where((e) => e.isNotEmpty).join(' ');
 
-    var flipped = false;
-    var begin = 0;
+    // final result = <String>[];
 
-    for (var i = 0; i < s.length; i++) {
-        if (s[i] != ' ' && !flipped) {
-            flipped = true;
-            begin = i;
-        }
+    // var flipped = false;
+    // var begin = 0;
 
-        if ((s[i] == ' ' || i == s.length - 1) && flipped) {
-            result.add(s.substring(begin, i + 1).trim());
-            flipped = false;
-        }
-    }
+    // for (var i = 0; i < s.length; i++) {
+    //     if (s[i] != ' ' && !flipped) {
+    //         flipped = true;
+    //         begin = i;
+    //     }
 
-    return result.reversed.join(' ');
+    //     if ((s[i] == ' ' || i == s.length - 1) && flipped) {
+    //         result.add(s.substring(begin, i + 1).trim());
+    //         flipped = false;
+    //     }
+    // }
+
+    // return result.reversed.join(' ');
   }
 }
