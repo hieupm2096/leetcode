@@ -2,26 +2,30 @@ class Solution {
   int longestOnes(List<int> nums, int k) {
     if (nums.length < 2) return nums.length;
 
-    var longest1 = 0, l = 0, r = 0, count = 0;
+    var l = 0, r = 0;
+    var count = k;
+    var max = 0;
 
     while (r < nums.length) {
-        var e = nums[r];
-
-        if (e == 0) count++;
-
-        while (count > k) {
-            var e1 = nums[l];
-            if (e1 == 0) count--;
-            l++;
+        if (nums[r] == 0) {
+            count--;
         }
 
-        if (longest1 < r - l + 1) {
-            longest1 = r - l + 1;
+        if (count == 0 || count > 0 && r == nums.length - 1) {
+            if (r - l + 1 > max) max = r - l + 1;
+        }
+
+        while (count < 0 && l < nums.length) {
+            if (nums[l] == 0) {
+                count++;
+            }
+            l++;
         }
 
         r++;
     }
 
-    return longest1;
+
+    return max;
   }
 }
