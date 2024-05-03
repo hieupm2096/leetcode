@@ -12,10 +12,12 @@ class Solution {
 
     if (map1.keys.length != map2.keys.length) return false;
 
-    final set1 = map1.keys.toSet();
-    final set2 = map2.keys.toSet();
+    final keys1 = map1.keys.toList()..sort();
+    final keys2 = map2.keys.toList()..sort();
 
-    if (set1.difference(set2).length != 0 || set2.difference(set1).length != 0) return false;
+    for (var i = 0; i < keys1.length; i++) {
+        if (keys1[i] != keys2[i]) return false;
+    }
 
     final freq1 = map1.values.toList()..sort();
     final freq2 = map2.values.toList()..sort();
