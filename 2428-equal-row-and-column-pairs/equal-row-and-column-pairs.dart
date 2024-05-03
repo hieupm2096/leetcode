@@ -5,26 +5,23 @@ class Solution {
 
     final n = grid.length;
 
-    // init column array
-    final columns = List<List<int>>.generate(n, (_) => List.filled(n, 0));
+    final rows = <String>[];
+    final columns = <String>[];
 
-    // fill value for column array
     for (var i = 0; i < n; i++) {
+        var row = '';
+        var column = '';
         for (var j = 0; j < n; j++) {
-            columns[j][i] = grid[i][j];
+            row += '${grid[i][j]}\$';
+            column += '${grid[j][i]}\$';
         }
+        rows.add(row);
+        columns.add(column);
     }
 
     for (var i = 0; i < n; i++) {
         for (var j = 0; j < n; j++) {
-            var isValid = true;
-            for (var k = 0; k < n; k++) {
-                if (grid[i][k] != columns[j][k]) {
-                    isValid = false;
-                }
-            }
-
-            if (isValid) count++;
+            if (rows[i] == columns[j]) count++;
         }
     }
 
