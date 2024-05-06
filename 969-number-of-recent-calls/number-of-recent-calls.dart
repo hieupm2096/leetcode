@@ -8,12 +8,7 @@ class RecentCounter {
   int ping(int t) {
     _list.add(t);
 
-    if (_list.length == 1) return 1;
-
-    while (_list.length > 1) {
-      var first = _list.first;
-      if (first >= t - 3000) break;
-
+    while (_list.first < t - 3000) {
       _list.removeAt(0);
     }
 
