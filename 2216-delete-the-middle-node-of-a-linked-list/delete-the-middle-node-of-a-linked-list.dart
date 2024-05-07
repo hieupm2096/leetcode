@@ -12,18 +12,16 @@ class Solution {
 
     ListNode? slow = head;
     ListNode? fast = head;
+    ListNode? middle = head;
 
     while (fast != null && fast.next != null) {
-      fast = fast.next?.next;
-
-      if (fast == null || fast.next == null) {
-        slow?.next = slow?.next?.next;
-        return head;
-      }
-
+      middle = slow;
       slow = slow?.next;
+      fast = fast.next?.next;
     }
 
-    return null;
+    middle?.next = middle?.next?.next;
+
+    return head;
   }
 }
