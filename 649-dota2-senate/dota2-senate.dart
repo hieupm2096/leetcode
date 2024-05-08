@@ -1,9 +1,11 @@
+import 'dart:collection';
+
 class Solution {
   String predictPartyVictory(String senate) {
     if (senate.length == 1) return senate == 'R' ? 'Radiant' : 'Dire';
 
-    final rad = <int>[];
-    final dir = <int>[];
+    final rad = Queue<int>();
+    final dir = Queue<int>();
 
     for (var i = 0; i < senate.length; i++) {
       if (senate[i] == 'R') {
@@ -19,8 +21,8 @@ class Solution {
     var count = senate.length;
 
     while (rad.isNotEmpty && dir.isNotEmpty) {
-      final r = rad.removeAt(0);
-      final d = dir.removeAt(0);
+      final r = rad.removeFirst();
+      final d = dir.removeFirst();
 
       if (r < d) {
         rad.add(count);
