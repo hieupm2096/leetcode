@@ -6,9 +6,7 @@ class Solution {
     final dir = <int>[];
 
     for (var i = 0; i < senate.length; i++) {
-      final c = senate[i];
-
-      if (c == 'R') {
+      if (senate[i] == 'R') {
         rad.add(i);
       } else {
         dir.add(i);
