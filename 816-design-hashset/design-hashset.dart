@@ -1,5 +1,5 @@
 class MyHashSet {
-  final _list = List<bool>.filled((pow(10, 6) + 1).toInt(), false);
+  final _list = List<bool>.filled(1000001, false);
 
   MyHashSet() {
     
