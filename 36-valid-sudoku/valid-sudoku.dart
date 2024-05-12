@@ -3,7 +3,6 @@ class Solution {
     final columns = List<Set<String>>.generate(9, (_) => {});
     final rows = List<Set<String>>.generate(9, (_) => {});
     final blocks = List<Set<String>>.generate(9, (_) => {});
-    final ts = [0, 0, 0, 3, 3, 3, 6, 6, 6];
 
     for (var i = 0; i < 9; i++) {
       for (var j = 0; j < 9; j++) {
@@ -17,7 +16,7 @@ class Solution {
         if (columns[j].contains(cell))  return false;
         columns[j].add(cell);
 
-        final blockNo = ts[i] + j ~/ 3;
+        final blockNo = 3 * (i ~/ 3) + j ~/ 3;
 
         if (blocks[blockNo].contains(cell)) return false;
         blocks[blockNo].add(cell);
