@@ -1,20 +1,20 @@
 class MyHashSet {
-  final _list = List<bool>.filled(1000001, false);
+  final _list = List<int?>.filled(1000001, null);
 
   MyHashSet() {
     
   }
   
   void add(int key) {
-    _list[key] = true;
+    _list[key] = 0;
   }
   
   void remove(int key) {
-    _list[key] = false;
+    _list[key] = null;
   }
   
   bool contains(int key) {
-    return _list[key];
+    return _list[key] != null;
   }
 }
 
