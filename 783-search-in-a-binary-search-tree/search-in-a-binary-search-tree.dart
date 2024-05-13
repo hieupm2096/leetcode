@@ -13,13 +13,13 @@ class Solution {
 
     if (root.val == val) return root;
 
-    final leftNode = searchBST(root.left, val);
+    if (root.val > val) {
+      return searchBST(root.left, val);
+    }
 
-    if (leftNode != null) return leftNode;
-
-    final rightNode = searchBST(root.right, val);
-
-    if (rightNode != null) return rightNode;
+    if (root.val < val) {
+      return searchBST(root.right, val);
+    }
 
     return null;
   }
