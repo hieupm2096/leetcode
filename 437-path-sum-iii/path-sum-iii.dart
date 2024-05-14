@@ -9,28 +9,25 @@
  */
 class Solution {
   int pathSum(TreeNode? root, int targetSum) {
-    _dfs(root, targetSum);
+    if (root == null) return _count;
+
+    _dfs(root, targetSum, 0);
+    pathSum(root.left, targetSum);
+    pathSum(root.right, targetSum);
 
     return _count;
   }
 
   int _count = 0;
 
-  void _dfs(TreeNode? node, int targetSum) {
+  void _dfs(TreeNode? node, int targetSum, int currentSum) {
     if (node == null) return;
 
-    _test(node, targetSum);
+    currentSum += node.val;
 
-    _dfs(node.left, targetSum);
-    _dfs(node.right, targetSum);
-  }
+    if (currentSum == targetSum) _count++;
 
-  void _test(TreeNode? node, int targetSum) {
-    if (node == null) return;
-
-    if (node.val == targetSum) _count++;
-
-    _test(node.left, targetSum - node.val);
-    _test(node.right, targetSum - node.val);
+    _dfs(node.left, targetSum, currentSum);
+    _dfs(node.right, targetSum, currentSum);
   }
 }
