@@ -21,14 +21,6 @@ class Solution {
 
     if (node.left == null && node.right == null) return newSum == targetSum;
 
-    final r1 = _dfs(node.left, newSum, targetSum);
-
-    if (r1) return r1;
-
-    final r2 = _dfs(node.right, newSum, targetSum);
-
-    if (r2) return r2;
-
-    return false;
+    return _dfs(node.left, newSum, targetSum) ||  _dfs(node.right, newSum, targetSum);
   }
 }
