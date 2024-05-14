@@ -11,16 +11,8 @@ class Solution {
   bool hasPathSum(TreeNode? root, int targetSum) {
     if (root == null) return false;
 
-    return _dfs(root, 0, targetSum);
-  }
+    if (root.left == null && root.right == null) return root.val == targetSum;
 
-  bool _dfs(TreeNode? node, int currentSum, int targetSum) {
-    if (node == null) return false;
-
-    final newSum = currentSum + node.val;
-
-    if (node.left == null && node.right == null) return newSum == targetSum;
-
-    return _dfs(node.left, newSum, targetSum) ||  _dfs(node.right, newSum, targetSum);
+    return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
   }
 }
