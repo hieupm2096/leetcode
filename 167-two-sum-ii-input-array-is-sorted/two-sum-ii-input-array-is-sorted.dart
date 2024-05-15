@@ -8,11 +8,11 @@ class Solution {
     var l = 0, r = numbers.length - 1;
 
     while (l < r) {
-      final left = numbers[l], right = numbers[r];
+      final sum = numbers[l] + numbers[r];
 
-      if (left + right == target) {
+      if (sum == target) {
         return [l + 1, r + 1];
-      } else if (left + right < target) {
+      } else if (sum < target) {
         l++;
       } else {
         r--;
