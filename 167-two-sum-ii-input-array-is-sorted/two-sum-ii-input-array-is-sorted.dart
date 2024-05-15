@@ -5,14 +5,18 @@ class Solution {
       return [];
     }
 
-    final mp = <int, int>{};
+    var l = 0, r = numbers.length - 1;
 
-    for (var i = 0; i < numbers.length; i++) {
-      final e = numbers[i];
+    while (l < r) {
+      final left = numbers[l], right = numbers[r];
 
-      if (mp.containsKey(e)) return [mp[e]! + 1, i + 1];
-
-      mp[target - e] = i;
+      if (left + right == target) {
+        return [l + 1, r + 1];
+      } else if (left + right < target) {
+        l++;
+      } else {
+        r--;
+      };
     }
 
     return [];
