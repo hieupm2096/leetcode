@@ -13,19 +13,15 @@ function guessNumber(n: number): number {
 };
 
 function search(low: number, high: number): number {
-  let t = Math.floor((high + low) / 2)
+  let mid = Math.floor((high + low) / 2)
 
-  if (t == low) {
-    if (guess(high) == 0) return high;
-  }
-
-  let res = guess(t)
+  let res = guess(mid)
 
   if (res == -1) {
-    return search(low, t)
+    return search(low, mid - 1)
   } else if (res == 1) {
-    return search(t, high)
+    return search(mid + 1, high)
   } else {
-    return t;
+    return mid;
   }
 }
