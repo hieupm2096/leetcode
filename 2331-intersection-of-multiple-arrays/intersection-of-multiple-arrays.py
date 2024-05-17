@@ -13,8 +13,6 @@ class Solution:
                   fp[f] = [num]
 
         if len(nums) in fp:
-          res = fp[len(nums)]
-          res.sort()
-          return res
+          return sorted(fp[len(nums)])
 
         return []
