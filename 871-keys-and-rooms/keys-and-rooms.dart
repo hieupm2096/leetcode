@@ -1,4 +1,4 @@
-import 'dart:collection';
+import 'dart:collection' show HashSet, Queue;
 
 class Solution {
   bool canVisitAllRooms(List<List<int>> rooms) {
