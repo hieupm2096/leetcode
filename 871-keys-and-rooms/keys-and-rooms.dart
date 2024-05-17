@@ -1,4 +1,4 @@
-import 'dart:collection' show HashSet, Queue;
+import 'dart:collection' show HashSet;
 
 class Solution {
   final visited = HashSet<int>();
