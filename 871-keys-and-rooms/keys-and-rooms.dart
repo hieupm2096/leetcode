@@ -2,7 +2,7 @@ import 'dart:collection';
 
 class Solution {
   bool canVisitAllRooms(List<List<int>> rooms) {
-    final visitedRooms = <int>{};
+    final visitedRooms = HashSet<int>();
     final queue = Queue<List<int>>();
 
     visitedRooms.add(0);
