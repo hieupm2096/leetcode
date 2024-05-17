@@ -1,26 +1,25 @@
 import 'dart:collection' show HashSet, Queue;
 
 class Solution {
+  final visited = HashSet<int>();
+
   bool canVisitAllRooms(List<List<int>> rooms) {
-    final visitedRooms = HashSet<int>();
-    final queue = Queue<List<int>>();
+    visited.add(0);
 
-    visitedRooms.add(0);
-  
-    queue.addLast(rooms[0]);
+    _dfs(0, rooms);
 
-    while (queue.isNotEmpty) {
-      final room = queue.removeFirst();
+    return visited.length == rooms.length;
+  }
 
-      for (final key in room) {
-        if (visitedRooms.contains(key)) continue;
+  void _dfs(int vertex, List<List<int>> rooms) {
+    final neighbors = rooms[vertex];
 
-        visitedRooms.add(key);
+    for (final neighbor in neighbors) {
+      if (visited.contains(neighbor)) continue;
 
-        queue.addLast(rooms[key]);
-      }
+      visited.add(neighbor);
+
+      _dfs(neighbor, rooms);
     }
-
-    return rooms.length == visitedRooms.length;
   }
 }
