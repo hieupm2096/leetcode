@@ -10,13 +10,9 @@ class Solution:
             if op == 'C':
                 stack.pop()
             elif op == 'D':
-                t = stack[len(stack) - 1]
-                stack.append(t * 2)
+                stack.append(stack[-1] * 2)
             elif op == '+':
-                t = stack.pop()
-                s = t + stack[len(stack) - 1]
-                stack.append(t)
-                stack.append(s)
+                stack.append(stack[-1] + stack[-2])
             else:
                 stack.append(int(op))
 
