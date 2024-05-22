@@ -38,31 +38,31 @@ class Solution {
     var subsets = <(int, int)>[];
 
     while (queue.isNotEmpty) {
-      final curr = queue.removeFirst();
+      final size = queue.length;
 
-      if (curr != tupleEntrance && isBorder(curr)) return res;
+      for (var i = 0; i < size; i++) {
+        final curr = queue.removeFirst();
 
-      final left = (curr.$1, curr.$2 - 1);
+        if (curr != tupleEntrance && isBorder(curr)) return res;
 
-      if (checkCell(left)) subsets.add(left);
+        final left = (curr.$1, curr.$2 - 1);
 
-      final top = (curr.$1 - 1, curr.$2);
+        if (checkCell(left)) queue.add(left);
 
-      if (checkCell(top)) subsets.add(top);
+        final top = (curr.$1 - 1, curr.$2);
 
-      final right = (curr.$1, curr.$2 + 1);
+        if (checkCell(top)) queue.add(top);
 
-      if (checkCell(right)) subsets.add(right);
+        final right = (curr.$1, curr.$2 + 1);
 
-      final bottom = (curr.$1 + 1, curr.$2);
+        if (checkCell(right)) queue.add(right);
 
-      if (checkCell(bottom)) subsets.add(bottom);
+        final bottom = (curr.$1 + 1, curr.$2);
 
-      if (queue.isEmpty) {
-        res++;
-        queue.addAll(subsets);
-        subsets = [];
+        if (checkCell(bottom)) queue.add(bottom);
       }
+      
+      res++;
     }
 
     return -1;
