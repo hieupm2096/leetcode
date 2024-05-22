@@ -6,7 +6,7 @@ class Solution {
 
     final tupleMaze = {
       for (var i = 0; i < m; i++)
-        for (var j = 0; j < n; j++) (i, j): maze[i][j]
+        for (var j = 0; j < n; j++) if (maze[i][j] != '+') (i, j): maze[i][j]
     };
 
     final tupleEntrance = (entrance[0], entrance[1]);
@@ -26,13 +26,10 @@ class Solution {
     bool checkCell((int, int) cell) {
       if (!tupleMaze.containsKey(cell) || visited.contains(cell)) {
         return false;
-      } else if (tupleMaze[cell] == '+') {
-        visited.add(cell);
-        return false;
-      } else {
-        visited.add(cell);
-        return true;
       }
+
+      visited.add(cell);
+      return true;
     }
 
     var subsets = <(int, int)>[];
