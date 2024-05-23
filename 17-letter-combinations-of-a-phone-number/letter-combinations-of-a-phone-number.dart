@@ -13,26 +13,24 @@ class Solution {
       '9': ['w', 'x', 'y', 'z'],
     };
 
-    final arr = digits.split('').map((e) => mp[e]!).toList();
-
     final res = <String>[];
 
-    void dfs(String s, List<List<String>> arr) {
-      if (s.length == arr.length) {
+    void dfs(int index, String s, String digits) {
+      if (index >= digits.length) {
         res.add(s);
         return;
       }
 
-      final letters = arr[s.length];
+      final letters = mp[digits[index]] ?? [];
 
       for (var i = 0; i < letters.length; i++) {
         s += letters[i];
-        dfs(s, arr);
+        dfs(index + 1, s, digits);
         s = s.substring(0, s.length - 1);
       }
     }
 
-    dfs('', arr);
+    dfs(0, '', digits);
 
     return res;
   }
