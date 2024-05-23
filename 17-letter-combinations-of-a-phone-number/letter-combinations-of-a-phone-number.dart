@@ -15,7 +15,7 @@ class Solution {
 
     final res = <String>[];
 
-    void dfs(int index, String s, String digits) {
+    void dfs(int index, String s) {
       if (index >= digits.length) {
         res.add(s);
         return;
@@ -24,11 +24,11 @@ class Solution {
       final letters = mp[digits[index]] ?? [];
 
       for (var i = 0; i < letters.length; i++) {
-        dfs(index + 1, s + letters[i], digits);
+        dfs(index + 1, s + letters[i]);
       }
     }
 
-    dfs(0, '', digits);
+    dfs(0, '');
 
     return res;
   }
