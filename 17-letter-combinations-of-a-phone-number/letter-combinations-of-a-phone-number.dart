@@ -24,9 +24,7 @@ class Solution {
       final letters = mp[digits[index]] ?? [];
 
       for (var i = 0; i < letters.length; i++) {
-        s += letters[i];
-        dfs(index + 1, s, digits);
-        s = s.substring(0, s.length - 1);
+        dfs(index + 1, s + letters[i], digits);
       }
     }
 
