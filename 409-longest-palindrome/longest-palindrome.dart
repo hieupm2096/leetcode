@@ -1,28 +1,27 @@
-import 'dart:collection' show HashMap;
+import 'dart:collection' show HashSet;
 import 'dart:math' show max;
 
 class Solution {
   int longestPalindrome(String s) {
-    final freq = HashMap<String, int>();
+    final chars = HashSet<String>();
 
-    var res = 0, hasOdd = false;
+    var res = 0;
 
     for (var i = 0; i < s.length; i++) {
       final c = s[i];
 
-      freq[c] = (freq[c] ?? 0) + 1;
-    }
+      if (chars.contains(c)) {
+        res += 2;
 
-    for (final e in freq.values) {
-      if (e % 2 == 0) {
-        res += e;
+        chars.remove(c);
       } else {
-        hasOdd = true;
-        res += e - 1;
+        chars.add(c);
       }
     }
 
-    res += hasOdd ? 1 : 0;
+    if (chars.isNotEmpty) {
+      res++;
+    }
 
     return res;
   }
