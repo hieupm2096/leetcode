@@ -1,5 +1,4 @@
 import 'dart:collection' show HashSet;
-import 'dart:math' show max;
 
 class Solution {
   int longestPalindrome(String s) {
