@@ -10,7 +10,6 @@ class Solution {
 
     for (var i = 0; i < firstWord.length; i++) {
       final c = firstWord[i];
-
       common[c] = (common[c] ?? 0) + 1;
     }
     
