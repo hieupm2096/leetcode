@@ -4,29 +4,21 @@ class Solution {
 
     final cardCount = <int, int>{};
 
+    hand.sort();
+
     for (final card in hand) {
       cardCount[card] = (cardCount[card] ?? 0) + 1;
     }
 
-    for (final card in hand) {
-      var startCard = card;
+    for (final key in cardCount.keys) {
+      if ((cardCount[key] ?? 0) == 0) continue;
 
-      // find start card
-      while (cardCount.containsKey(startCard - 1)) {
-        startCard--;
-      }
+      while (cardCount[key]! > 0) {
+        for (var i = 0; i < groupSize; i++) {
+          if ((cardCount[key + i] ?? 0) <= 0) return false;
 
-      // process sequence from start card
-      while (startCard <= card) {
-        while (cardCount[startCard]! > 0) {
-          for (var nextCard = startCard; nextCard < startCard + groupSize; nextCard++) {
-            if ((cardCount[nextCard] ?? 0) == 0) return false;
-
-            cardCount[nextCard] = cardCount[nextCard]! - 1;
-          }
+          cardCount[key + i] = cardCount[key + i]! - 1;
         }
-
-        startCard++;
       }
     }
 
