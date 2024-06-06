@@ -14,11 +14,9 @@ class Solution {
       while (mp[key]! > 0) {
         mp[key] = mp[key]! - 1;
         for (var i = 1; i < groupSize; i++) {
-          if (!mp.containsKey(key + i)) return false;
+          if ((mp[key + i] ?? 0) == 0) return false;
 
           mp[key + i] = mp[key + i]! - 1;
-
-          if (mp[key + i]! < 0) return false;
         }
       }
     }
