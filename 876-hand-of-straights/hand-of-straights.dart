@@ -1,5 +1,7 @@
 class Solution {
   bool isNStraightHand(List<int> hand, int groupSize) {
+    if (hand.length % groupSize != 0) return false;
+
     hand.sort();
 
     final mp = <int, int>{};
@@ -25,9 +27,3 @@ class Solution {
   }
 }
 
-// rearrange cards into groups
-// group has groupSize and has consecutive cards
-
-// 1 - 1 2 - 2 3 - 2 4 - 1 6 7 8
-
-// 0 - 2, 1 - 1, 3 - 1, 4 - 1, 5 - 1, 6 - 1, 8 - 1, 9 - 1
