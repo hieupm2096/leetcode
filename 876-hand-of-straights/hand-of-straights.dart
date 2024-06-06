@@ -2,27 +2,34 @@ class Solution {
   bool isNStraightHand(List<int> hand, int groupSize) {
     if (hand.length % groupSize != 0) return false;
 
-    hand.sort();
+    final cardCount = <int, int>{};
 
-    final mp = <int, int>{};
-
-    for (final e in hand) {
-      mp[e] = (mp[e] ?? 0) + 1;
+    for (final card in hand) {
+      cardCount[card] = (cardCount[card] ?? 0) + 1;
     }
 
-    for (final key in mp.keys) {
-      if (mp[key]! == 0) continue;
+    for (final card in hand) {
+      var startCard = card;
 
-      while (mp[key]! > 0) {
-        mp[key] = mp[key]! - 1;
-        for (var i = 1; i < groupSize; i++) {
-          if ((mp[key + i] ?? 0) == 0) return false;
+      // find start card
+      while (cardCount.containsKey(startCard - 1)) {
+        startCard--;
+      }
 
-          mp[key + i] = mp[key + i]! - 1;
+      // process sequence from start card
+      while (startCard <= card) {
+        while (cardCount[startCard]! > 0) {
+          for (var nextCard = startCard; nextCard < startCard + groupSize; nextCard++) {
+            if ((cardCount[nextCard] ?? 0) == 0) return false;
+
+            cardCount[nextCard] = cardCount[nextCard]! - 1;
+          }
         }
+
+        startCard++;
       }
     }
-    
+
     return true;
   }
 }
