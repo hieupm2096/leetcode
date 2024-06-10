@@ -1,13 +1,13 @@
 class Solution {
   int heightChecker(List<int> heights) {
-    final copied = List<int>.from(heights);
-
-    heights.sort();
+    final expected = <int>[];
+    expected.addAll(heights);
+    expected.sort();
 
     var res = 0;
 
     for (var i = 0; i < heights.length; i++) {
-      if (copied[i] != heights[i]) res++;
+      if (expected[i] != heights[i]) res++;
     }
 
     return res;
