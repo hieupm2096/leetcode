@@ -6,13 +6,12 @@ class Solution {
 
     final sub = <int>[];
 
-    final set2 = arr2.toSet();
+    for (final e in arr2) {
+      freq[e] = <int>[];
+    }
 
     for (final e in arr1) {
-      if (set2.contains(e)) {
-        if (!freq.containsKey(e)) {
-          freq[e] = <int>[];
-        }
+      if (freq.containsKey(e)) {
         freq[e]!.add(e);
       } else {
         sub.add(e);
@@ -21,10 +20,8 @@ class Solution {
 
     final res = <int>[];
 
-    for (final e in arr2) {
-      if (freq.containsKey(e)) {
-        res.addAll(freq[e]!);
-      }
+    for (final value in freq.values) {
+      res.addAll(value);
     }
 
     sub.sort();
