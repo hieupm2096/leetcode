@@ -18,11 +18,7 @@ class Solution {
       }
     }
 
-    final res = <int>[];
-
-    for (final value in freq.values) {
-      res.addAll(value);
-    }
+    final res = freq.values.expand((e) => e).toList();
 
     sub.sort();
 
