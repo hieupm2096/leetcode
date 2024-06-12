@@ -1,17 +1,23 @@
 class Solution {
   void sortColors(List<int> nums) {
     if (nums.length == 1) return;
-    
-    for (var i = 0; i < nums.length; i++) {
-      var minIndex = i;
 
-      for (var j = i + 1; j < nums.length; j++) {
-        if (nums[j] < nums[minIndex]) minIndex = j;
+    final mp = <int, int>{};
+
+    for (final e in nums) {
+      mp[e] = (mp[e] ?? 0) + 1;
+    }
+
+    var currentIndex = 0;
+
+    for (var i = 0; i < 3; i++) {
+      if (!mp.containsKey(i)) continue;
+
+      for (var j = currentIndex; j < currentIndex + mp[i]!; j++) {
+        nums[j] = i;
       }
 
-      final temp = nums[i];
-      nums[i] = nums[minIndex];
-      nums[minIndex] = temp;
+      currentIndex = currentIndex + mp[i]!;
     }
   }
 }
