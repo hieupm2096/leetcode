@@ -8,16 +8,12 @@ class Solution {
       mp[e] = (mp[e] ?? 0) + 1;
     }
 
-    var currentIndex = 0;
+    nums.clear();
 
     for (var i = 0; i < 3; i++) {
-      if (!mp.containsKey(i)) continue;
+      final count = mp[i] ?? 0;
 
-      for (var j = currentIndex; j < currentIndex + mp[i]!; j++) {
-        nums[j] = i;
-      }
-
-      currentIndex = currentIndex + mp[i]!;
+      nums.addAll(List.filled(count, i));
     }
   }
 }
