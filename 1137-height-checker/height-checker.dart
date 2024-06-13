@@ -1,20 +1,33 @@
 class Solution {
   int heightChecker(List<int> heights) {
-    final expected = <int>[];
-    expected.addAll(heights);
-    expected.sort();
+    void bubbleSort(List<int> arr) {
+      var hasSwapped = true;
 
-    var res = 0;
+      while (hasSwapped) {
+        hasSwapped = false;
 
-    for (var i = 0; i < heights.length; i++) {
-      if (expected[i] != heights[i]) res++;
+        for (var i = 0; i < arr.length - 1; i++) {
+          if (arr[i] > arr[i + 1]) {
+            final temp = arr[i];
+            arr[i] = arr[i + 1];
+            arr[i + 1] = temp;
+
+            hasSwapped = true;
+          }
+        }
+      }
     }
 
-    return res;
+    final expected = List<int>.from(heights);
+
+    bubbleSort(expected);
+
+    var ans = 0;
+
+    for (var i = 0; i < heights.length; i++) {
+      if (heights[i] != expected[i]) ans++;
+    }
+
+    return ans;
   }
 }
-
-// non decreasing order
-// expected is the well-sorted array
-// heights is the current array
-// return number of indices where heights[i] != expected[i]
