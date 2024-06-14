@@ -2,8 +2,6 @@ class Solution {
   int minIncrementForUnique(List<int> nums) {
     if (nums.length == 1) return 0;
 
-    final freq = <int, int>{};
-
     nums.sort();
 
     var ans = 0;
