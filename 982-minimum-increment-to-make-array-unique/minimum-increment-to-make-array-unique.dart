@@ -6,31 +6,12 @@ class Solution {
 
     nums.sort();
 
-    for (final e in nums) {
-      freq[e] = (freq[e] ?? 0) + 1;
-    }
-
     var ans = 0;
 
-    final keys = List<int>.from(freq.keys);
-
-    for (final key in keys) {
-      // because the array was sorted, we could bypass 1 count case
-      if (freq[key] == 1) continue;
-
-      var step = 0;
-      var e = key;
-
-      while (freq[key]! > 1) {
-        freq[key] = freq[key]! - 1;
-
-        while (freq.containsKey(e)) {
-          e++;
-          step++;
-        }
-
-        ans += step;
-        freq[e] = 1;
+    for (var i = 1; i < nums.length; i++) {
+      if (nums[i] <= nums[i - 1]) {
+        ans += nums[i - 1] - nums[i] + 1;
+        nums[i] = nums[i - 1] + 1;
       }
     }
 
