@@ -1,4 +1,4 @@
-import 'dart:math' show pow;
+
 
 class Solution {
   bool judgeSquareSum(int c) {
