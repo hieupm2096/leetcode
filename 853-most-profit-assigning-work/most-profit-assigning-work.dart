@@ -32,10 +32,3 @@ class Solution {
     return ans;
   }
 }
-
-// n jobs, m workers
-// difficulty, profit
-// job with difficulty <= worker
-// highest profit
-
-// PriorityQueue sorts difficulty -> 
