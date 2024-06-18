@@ -18,9 +18,6 @@ class Solution {
 
     dp.sort((a, b) => a.$1.compareTo(b.$1));
 
-    print(dp);
-    print(worker);
-
     var index = 0, ans = 0, maxProfit = 0;
 
     for (final ability in worker) {
