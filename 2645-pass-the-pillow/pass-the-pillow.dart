@@ -4,27 +4,18 @@ n ppl -> 1 - n
 n n-1 n-2 ... 1
 1 2 3 ... time up
 */
+import 'dart:math' show ceiling;
 
 class Solution {
   int passThePillow(int n, int time) {
-    var ans = 1;
-    var reachedN = false;
-    while (time > 0) {
-      if (ans == n) {
-        reachedN = true;
-      } else if (ans == 1) {
-        reachedN = false;
-      }
+    // take n - 1 seconds to complete a cycle 
+    final cycle = time ~/ (n - 1);
 
-      if (!reachedN) {
-        ans++;
-      } else {
-        ans--;
-      }
+    final extraTime = time % (n - 1);
 
-      time--;
+    if (cycle.isEven) {
+      return 1 + extraTime;
     }
-
-    return ans;
+    return n - extraTime;
   }
 }
