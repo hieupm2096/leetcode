@@ -5,7 +5,7 @@ class Solution {
     final q = Queue<int>();
 
     for (var i = 1; i <= n; i++) {
-      q.addLast(i);
+      q.add(i);
     }
 
     var count = k;
@@ -15,10 +15,10 @@ class Solution {
 
       final curr = q.removeFirst();
 
-      if (count != 0) {
-        q.addLast(curr);
-      } else {
+      if (count == 0) {
         count = k;
+      } else {
+        q.addLast(curr);
       }
     }
 
