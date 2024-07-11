@@ -1,28 +1,38 @@
 class Solution {
   String reverseParentheses(String s) {
-    final stack = <String>[];
+    final opened = <int>[];
+
+    final pair = List<int>.filled(s.length, 0);
 
     for (var i = 0; i < s.length; i++) {
       final c = s[i];
 
-      stack.add(c);
+      if (c == '(') {
+        opened.add(i);
+      }
 
-      if (stack.last == ')') {
-        // remove ')' from stack
-        stack.removeLast();
-
-        final temp = <String>[];
-        while (stack.last != '(') {
-          temp.add(stack.removeLast());
-        }
-
-        // remove '(' from stack
-        stack.removeLast();
-
-        stack.addAll(temp);
+      if (c == ')') {
+        // pairing up
+        final open = opened.removeLast();
+        pair[open] = i;
+        pair[i] = open;
       }
     }
 
-    return stack.join();
+    var result = '', curr = 0, direction = 1;
+
+    while (curr < s.length) {
+      if (s[curr] == '(' || s[curr] == ')') {
+        // jump and change direction
+        curr = pair[curr];
+        direction = -direction;
+      } else {
+        result += s[curr];
+      }
+
+      curr += direction;
+    }
+
+    return result;
   }
 }
