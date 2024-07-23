@@ -2,6 +2,7 @@ import 'dart:collection';
 
 class Solution {
   List<int> frequencySort(List<int> nums) {
+    /* Using 2 maps
     final nf = HashMap<int, int>();
     final fn = HashMap<int, HashSet<int>>();
 
@@ -37,5 +38,24 @@ class Solution {
     }
 
     return res;
+    */
+
+    final freq = HashMap<int, int>();
+
+    for (final e in nums) {
+      freq[e] = (freq[e] ?? 0) + 1;
+    }
+
+    nums.sort((a, b) {
+      final res = freq[a]!.compareTo(freq[b]!);
+
+      if (res == 0) {
+        return b.compareTo(a);
+      }
+
+      return res;
+    });
+
+    return nums;
   }
 }
