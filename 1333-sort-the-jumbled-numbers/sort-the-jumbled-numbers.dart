@@ -2,7 +2,7 @@ import 'dart:collection' show HashMap;
 
 class Solution {
   List<int> sortJumbled(List<int> mapping, List<int> nums) {
-    final mappedNums = HashMap<int, (int a, int b)>();
+    final mappedNums = HashMap<int, (int, int)>();
 
     for (var i = 0; i < nums.length; i++) {
       final e = nums[i];
