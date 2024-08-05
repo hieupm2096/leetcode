@@ -9,7 +9,9 @@ class Solution {
     for (final e in arr) {
       mp[e] = (mp[e] ?? 0) + 1;
 
-      s.add(e);
+      if (mp[e]! <= 1) {
+        s.add(e);
+      }
 
       if (mp[e]! > 1) {
         s.remove(e);
