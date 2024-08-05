@@ -11,9 +11,7 @@ class Solution {
 
       if (mp[e]! <= 1) {
         s.add(e);
-      }
-
-      if (mp[e]! > 1) {
+      } else {
         s.remove(e);
       }
     }
