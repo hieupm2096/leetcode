@@ -7,8 +7,6 @@ class Solution {
         }
     }
 
-    print(c1);
-
     for (var i = 0; i < s.length - 1; i++) {
         if (s[i] == '0') {
             c0++;
